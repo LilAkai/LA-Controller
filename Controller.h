@@ -130,6 +130,9 @@ namespace la {
 		void stopVibration();
 		bool getIsVibrating() const;
 
+		// Méthode pour mettre à jour tous les inputs
+		void updateInputs();
+
 	private:
 		void sendVibrationData(float leftIntensity, float rightIntensity);
 		void vibrationWorker(float duration, float leftIntensity, float rightIntensity);

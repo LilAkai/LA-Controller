@@ -10,7 +10,9 @@ int la::Init() {
     return hid_init();
 }
 
-la::Controller::Controller(): connected(false), isVibrating(false) {}
+la::Controller::Controller(): connected(false), isVibrating(false) {
+    button = Button(this);
+}
 
 la::Controller::~Controller() {
     stopVibration();
@@ -238,5 +240,12 @@ void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity
         if (result<0) {
             std::cerr<<"Erreur lors de l'envoi de la vibration Xbox"<<std::endl;
         }
+    }
+}
+
+// Méthode pour mettre à jour tous les inputs (à appeler dans votre boucle de jeu)
+void la::Controller::updateInputs() {
+    if (isConnected()) {
+        this->button.updateButtonStates(); //TODO : mettre a jour les joysticks et les triggers
     }
 }
