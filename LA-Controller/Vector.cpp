@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Vector.h"
+#include "LA-Controller/Vector.h"
 #include "cmath"
 
 // Constructeur par défaut (déjà présent via = default dans .h)

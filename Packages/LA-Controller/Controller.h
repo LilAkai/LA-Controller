@@ -21,7 +21,7 @@
 #define DUALSENSE_PRODUCT_ID 0x0CE6
 
 namespace la {
-	int Init();
+	int LA_CONTROLLER_API Init();
 
 	namespace Freq {
 		enum Frequency {

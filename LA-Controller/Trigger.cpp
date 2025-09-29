@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Trigger.h"
+#include "LA-Controller/Trigger.h"
 
 la::Trigger::Trigger(): value(0.0f) {}
 

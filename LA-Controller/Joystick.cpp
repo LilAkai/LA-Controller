@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Joystick.h"
+#include "LA-Controller/Joystick.h"
 
 la::Joystick::Joystick(): axis() {}
 

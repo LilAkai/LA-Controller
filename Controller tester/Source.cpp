@@ -5,7 +5,8 @@
 using dualsense = la::ControllerType::Dualsense;
 
 void main() {
-	la::Init();
+	if (la::Init())
+		return;
 
 	la::Controller ctrl;
 	ctrl.autoDetectAndConnect();
