@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Button.h"
 #include "HID/hidapi.h"
+#include "Controller.h"
 
 // Implémentation complète de Button - à ajouter dans Controller.cpp
 

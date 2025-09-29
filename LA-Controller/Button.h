@@ -1,22 +1,21 @@
 #pragma once
 #include "Export.h"
 #include "ControllerType.h"
-#include "Controller.h"
 
 namespace la {
+    class Controller;
     class LA_CONTROLLER_API Button {
     private:
-        static constexpr unsigned int maxButtons {32};
-        Controller *parent; // Référence vers le contrôleur parent
+        static constexpr unsigned int maxButtons{ 32 };
+        Controller* parent; // Référence vers le contrôleur parent
 
         // Buffer pour stocker l'état des boutons lu depuis HID
         bool buttonStates[maxButtons];
 
     public:
         // Constructeur avec référence au controller parent
-        Button(Controller *controller = nullptr);
-
-		~Button() = default;
+        Button(Controller* controller = nullptr);
+        ~Button() = default;
 
         // Méthodes pour lire l'état des boutons
         [[nodiscard]] bool isPressed(la::ControllerType::Dualsense button);
