@@ -8,17 +8,20 @@
 //#include "HID/hidapi_winapi.h"
 
 //LA_CONTROLLER INCLUDES
-#include "Vector.h"
-#include "Identification.h"
 #include "Export.h"
+#include "Vector.h"
+
+#include "Identification.h"
+#include "ControllerType.h"
+#include "Button.h"
+#include "Joystick.h"
+#include "Trigger.h"
 
 #define SONY_VENDOR_ID 0x054C
 #define DUALSENSE_PRODUCT_ID 0x0CE6
 
 namespace la {
-	inline int Init() {
-		return hid_init();
-	}
+	int Init();
 
 	namespace Freq {
 		enum Frequency {
@@ -27,66 +30,6 @@ namespace la {
 		};
 	}
 
-	namespace ControllerType {
-		enum Xbox {
-			A = 0,
-			B,
-			X,
-			Y,
-
-			Start = 7,
-			Select = 6,
-
-			LB = 4,
-			RB = 5,
-
-			LStick_Xbox = 8,
-			RStick_Xbox = 9
-		};
-
-		enum Dualsense {
-			Cross = 0,
-			Circle,
-			Square,
-			Triangle,
-
-			Options = 7,
-			Share = 6,
-
-			L1 = 4,
-			R1 = 5,
-
-			LStick_DS = 8,
-			RStick_DS = 9
-		};
-	}
-
-	class LA_CONTROLLER_API Button {
-	private:
-		static constexpr unsigned int maxButtons {32};
-	public:
-		[[nodiscard]] bool isPressed(la::ControllerType::Dualsense button);
-		[[nodiscard]] bool isPressed(la::ControllerType::Xbox button);
-	};
-
-	class LA_CONTROLLER_API Joystick {
-	private:
-		la::Vector2f axis;
-		static constexpr unsigned int axisCount {8};
-	public:
-		// Constructeur par défaut
-		Joystick();
-		la::Vector2f getAxis();
-	};
-
-	class LA_CONTROLLER_API Trigger {
-	private:
-		float value;
-	public:
-		// Constructeur par défaut
-		Trigger();
-		float getValue();
-	};
 
 	class LA_CONTROLLER_API Event {
 	public:
@@ -186,6 +129,9 @@ namespace la {
 		void vibrateWithIntensity(float duration, float leftIntensity = 1.0f, float rightIntensity = 1.0f);
 		void stopVibration();
 		bool getIsVibrating() const;
+
+		// Méthode pour mettre à jour tous les inputs
+		void updateInputs();
 
 	private:
 		void sendVibrationData(float leftIntensity, float rightIntensity);

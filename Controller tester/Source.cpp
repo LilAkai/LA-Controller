@@ -1,17 +1,18 @@
-#include "LA-Controller/Controller.h"
 #include <iostream>
+
+#include "LA-Controller/Controller.h"
 
 using dualsense = la::ControllerType::Dualsense;
 
 void main() {
 	la::Init();
 
-	la::Controller ctrl = la::Controller();
+	la::Controller ctrl;
+	ctrl.autoDetectAndConnect();
 
 	while (1) {
-		ctrl.autoDetectAndConnect();
-
 		if (ctrl.isConnected()) {
+			ctrl.updateInputs();
 			if (ctrl.button.isPressed(dualsense::Cross)) {
 				std::cout<<"cross pressed"<<std::endl;
 			}

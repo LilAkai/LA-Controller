@@ -31,3 +31,4 @@
 
 *.pdb
 .vs/
+/Controller tester/x64

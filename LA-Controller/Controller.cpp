@@ -10,8 +10,13 @@ int la::Init() {
     return hid_init();
 }
 
-la::Controller::Controller(): connected(false), isVibrating(false) {
-    button = Button(this);
+la::Controller::Controller(): button(*this), connected(false), isVibrating(false) {
+	properties.var_hasAudioOutput = false;
+	properties.var_hasMicrophone = false;
+	properties.var_hasGyroscope = false;
+	properties.var_hasTouchPad = false;
+	properties.var_hasLED = false;
+	properties.paddlesCount = 0;
 }
 
 la::Controller::~Controller() {

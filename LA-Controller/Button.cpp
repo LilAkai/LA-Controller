@@ -5,7 +5,7 @@
 
 // Implémentation complète de Button - à ajouter dans Controller.cpp
 
-la::Button::Button(Controller *controller): parent(controller) {
+la::Button::Button(Controller &controller): parent(controller) {
     // Initialiser tous les boutons comme non pressés
     for (int i = 0; i<maxButtons; i++) {
         buttonStates[i] = false;
@@ -13,7 +13,7 @@ la::Button::Button(Controller *controller): parent(controller) {
 }
 
 bool la::Button::isPressed(la::ControllerType::Dualsense button) {
-    if (!parent||!parent->isConnected()) {
+    if (!&parent||!parent.isConnected()) {
         return false;
     }
 
@@ -30,7 +30,7 @@ bool la::Button::isPressed(la::ControllerType::Dualsense button) {
 }
 
 bool la::Button::isPressed(la::ControllerType::Xbox button) {
-    if (!parent||!parent->isConnected()) {
+    if (!&parent||!parent.isConnected()) {
         return false;
     }
 
@@ -47,7 +47,7 @@ bool la::Button::isPressed(la::ControllerType::Xbox button) {
 }
 
 void la::Button::updateButtonStates() {
-    if (!parent||!parent->isConnected()) {
+    if (!&parent||!parent.isConnected()) {
         // Si pas de contrôleur, tous les boutons sont relâchés
         for (int i = 0; i<maxButtons; i++) {
             buttonStates[i] = false;
@@ -60,12 +60,12 @@ void la::Button::updateButtonStates() {
 }
 
 void la::Button::readHIDButtonData() {
-    if (!parent) return;
+    if (!&parent) return;
 
-    hid_device *device = parent->getIdentification().getDevice();
+    hid_device *device = parent.getIdentification().getDevice();
     if (!device) return;
 
-    if (parent->isDualSense()) {
+    if (parent.isDualSense()) {
         // Lecture des données DualSense
         unsigned char inputData[64];
         int bytesRead = hid_read_timeout(device, inputData, sizeof(inputData), 10); // 10ms timeout
@@ -94,7 +94,7 @@ void la::Button::readHIDButtonData() {
             }
         }
 
-    } else if (parent->isXboxController()) {
+    } else if (parent.isXboxController()) {
         // Lecture des données Xbox Controller
         unsigned char inputData[64];
         int bytesRead = hid_read_timeout(device, inputData, sizeof(inputData), 10);
