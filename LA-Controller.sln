@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LA-Controller", "LA-Controller\LA-Controller.vcxproj", "{771F63ED-7C24-4A23-B95E-C90A409876EB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Controller tester", "Controller tester\Controller tester.vcxproj", "{B404513C-C2A0-4D1C-9444-5FB941AA84DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{771F63ED-7C24-4A23-B95E-C90A409876EB} = {771F63ED-7C24-4A23-B95E-C90A409876EB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

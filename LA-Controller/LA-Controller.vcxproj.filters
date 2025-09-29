@@ -36,29 +36,29 @@
     <ClInclude Include="pch.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Export.h">
+    <ClInclude Include="..\Packages\LA-Controller\Button.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\Controller.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\ControllerType.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\Identification.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\Joystick.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\Trigger.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\Vector.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\Export.h">
       <Filter>Fichiers d%27en-tête\LA_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Controller.h">
-      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Identification.h">
-      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="ControllerType.h">
-      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Joystick.h">
-      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Trigger.h">
-      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

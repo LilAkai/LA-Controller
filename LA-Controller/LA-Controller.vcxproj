@@ -151,16 +151,16 @@ sfml-network.lib
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="Controller.h" />
-    <ClInclude Include="ControllerType.h" />
-    <ClInclude Include="Export.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Button.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Controller.h" />
+    <ClInclude Include="..\Packages\LA-Controller\ControllerType.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Export.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Identification.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Joystick.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Trigger.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Vector.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Identification.h" />
-    <ClInclude Include="Joystick.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Trigger.h" />
-    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />

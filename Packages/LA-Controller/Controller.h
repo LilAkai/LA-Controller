@@ -38,7 +38,6 @@ namespace la {
 	};
 
 	// Déclaration anticipée pour Controller
-	class Controller;
 
 	class LA_CONTROLLER_API Properties {
 		friend class Controller;

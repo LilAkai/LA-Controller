@@ -1,172 +1,391 @@
-﻿  Controller.cpp
+﻿  pch.cpp
+  Button.cpp
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(12,15): warning C4251: « la::Identification::name ’ : « std::basic_string<char,std::char_traits<char>,std::allocator<char>> » doit avoir dll-interface pour être utilisé par les clients de « la::Identification »
+  (compiler le fichier source '/Button.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xstring(541,7):
+      voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(85,21): warning C4251: « la::Controller::isVibrating ’ : « std::atomic<bool> » doit avoir dll-interface pour être utilisé par les clients de « la::Controller »
+  (compiler le fichier source '/Button.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\atomic(2131,8):
+      voir la déclaration de 'std::atomic<bool>'
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(86,15): warning C4251: « la::Controller::vibrationThread ’ : « std::thread » doit avoir dll-interface pour être utilisé par les clients de « la::Controller »
+  (compiler le fichier source '/Button.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\thread(42,19):
+      voir la déclaration de 'std::thread'
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.cpp(8,13): warning C4273: 'la::Button::Button' : liaison DLL incohérente
+  (compiler le fichier source '/Button.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.h(17,9):
+      voir la définition précédente de « la::Button::Button »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.cpp(15,18): warning C4273: 'la::Button::isPressed' : liaison DLL incohérente
+  (compiler le fichier source '/Button.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.h(22,28):
+      voir la définition précédente de « la::Button::isPressed »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.cpp(32,18): warning C4273: 'la::Button::isPressed' : liaison DLL incohérente
+  (compiler le fichier source '/Button.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.h(23,28):
+      voir la définition précédente de « la::Button::isPressed »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.cpp(49,18): warning C4273: 'la::Button::updateButtonStates' : liaison DLL incohérente
+  (compiler le fichier source '/Button.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.h(26,14):
+      voir la définition précédente de « la::Button::updateButtonStates »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.cpp(62,18): warning C4273: 'la::Button::readHIDButtonData' : liaison DLL incohérente
+  (compiler le fichier source '/Button.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Button.h(30,14):
+      voir la définition précédente de « la::Button::readHIDButtonData »
+  
+  Controller.cpp
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(12,15): warning C4251: « la::Identification::name ’ : « std::basic_string<char,std::char_traits<char>,std::allocator<char>> » doit avoir dll-interface pour être utilisé par les clients de « la::Identification »
   (compiler le fichier source '/Controller.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xstring(541,7):
       voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
   
-C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(86,21): warning C4251: « la::Controller::isVibrating ’ : « std::atomic<bool> » doit avoir dll-interface pour être utilisé par les clients de « la::Controller »
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(85,21): warning C4251: « la::Controller::isVibrating ’ : « std::atomic<bool> » doit avoir dll-interface pour être utilisé par les clients de « la::Controller »
   (compiler le fichier source '/Controller.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\atomic(2131,8):
       voir la déclaration de 'std::atomic<bool>'
   
-C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(87,15): warning C4251: « la::Controller::vibrationThread ’ : « std::thread » doit avoir dll-interface pour être utilisé par les clients de « la::Controller »
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(86,15): warning C4251: « la::Controller::vibrationThread ’ : « std::thread » doit avoir dll-interface pour être utilisé par les clients de « la::Controller »
   (compiler le fichier source '/Controller.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\thread(42,19):
       voir la déclaration de 'std::thread'
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(13,17): warning C4273: 'la::Controller::Controller' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(91,3):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(90,3):
       voir la définition précédente de « la::Controller::Controller »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(22,18): warning C4273: 'la::Controller::~Controller' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(92,4):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(91,4):
       voir la définition précédente de « la::Controller::~Controller »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(27,29): warning C4273: 'la::Controller::getControllerName' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(100,15):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(99,15):
       voir la définition précédente de « la::Controller::getControllerName »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(31,30): warning C4273: 'la::Controller::getVendorID' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(101,16):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(100,16):
       voir la définition précédente de « la::Controller::getVendorID »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(35,30): warning C4273: 'la::Controller::getProductID' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(102,16):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(101,16):
       voir la définition précédente de « la::Controller::getProductID »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(39,32): warning C4273: 'la::Controller::getSerialNumber' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(103,18):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(102,18):
       voir la définition précédente de « la::Controller::getSerialNumber »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(43,28): warning C4273: 'la::Controller::getEvent' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(117,10):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(116,10):
       voir la définition précédente de « la::Controller::getEvent »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(47,37): warning C4273: 'la::Controller::getIdentification' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(118,19):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(117,19):
       voir la définition précédente de « la::Controller::getIdentification »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(51,33): warning C4273: 'la::Controller::getProperties' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(119,15):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(118,15):
       voir la définition précédente de « la::Controller::getProperties »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(55,22): warning C4273: 'la::Controller::isConnected' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(121,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(120,22):
       voir la définition précédente de « la::Controller::isConnected »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(59,22): warning C4273: 'la::Controller::hasAudioOutput' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(122,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(121,22):
       voir la définition précédente de « la::Controller::hasAudioOutput »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(63,22): warning C4273: 'la::Controller::isDualSense' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(125,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(124,22):
       voir la définition précédente de « la::Controller::isDualSense »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(67,22): warning C4273: 'la::Controller::isXboxController' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(126,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(125,22):
       voir la définition précédente de « la::Controller::isXboxController »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(71,22): warning C4273: 'la::Controller::connectController' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(95,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(94,8):
       voir la définition précédente de « la::Controller::connectController »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(104,22): warning C4273: 'la::Controller::autoDetectAndConnect' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(96,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(95,8):
       voir la définition précédente de « la::Controller::autoDetectAndConnect »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(108,22): warning C4273: 'la::Controller::disconnectController' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(97,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(96,8):
       voir la définition précédente de « la::Controller::disconnectController »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(118,22): warning C4273: 'la::Properties::hasAudioOutput' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(56,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(55,22):
       voir la définition précédente de « la::Properties::hasAudioOutput »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(122,22): warning C4273: 'la::Properties::hasMicrophone' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(57,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(56,22):
       voir la définition précédente de « la::Properties::hasMicrophone »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(126,22): warning C4273: 'la::Properties::hasGyroscope' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(60,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(59,22):
       voir la définition précédente de « la::Properties::hasGyroscope »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(130,22): warning C4273: 'la::Properties::hasTouchPad' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(61,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(60,22):
       voir la définition précédente de « la::Properties::hasTouchPad »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(134,22): warning C4273: 'la::Properties::hasLED' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(64,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(63,22):
       voir la définition précédente de « la::Properties::hasLED »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(138,22): warning C4273: 'la::Properties::setLedColor' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(65,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(64,8):
       voir la définition précédente de « la::Properties::setLedColor »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(142,22): warning C4273: 'la::Properties::hasPaddles' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(68,22):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(67,22):
       voir la définition précédente de « la::Properties::hasPaddles »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(146,30): warning C4273: 'la::Properties::getPaddlesCount' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(69,16):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(68,16):
       voir la définition précédente de « la::Properties::getPaddlesCount »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(152,22): warning C4273: 'la::Controller::vibrate' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(128,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(127,8):
       voir la définition précédente de « la::Controller::vibrate »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(156,22): warning C4273: 'la::Controller::vibrateWithIntensity' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(129,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(128,8):
       voir la définition précédente de « la::Controller::vibrateWithIntensity »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(176,22): warning C4273: 'la::Controller::stopVibration' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(130,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(129,8):
       voir la définition précédente de « la::Controller::stopVibration »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(186,22): warning C4273: 'la::Controller::getIsVibrating' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(131,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(130,8):
       voir la définition précédente de « la::Controller::getIsVibrating »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(190,22): warning C4273: 'la::Controller::vibrationWorker' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(138,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(137,8):
       voir la définition précédente de « la::Controller::vibrationWorker »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(210,22): warning C4273: 'la::Controller::sendVibrationData' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(137,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(136,8):
       voir la définition précédente de « la::Controller::sendVibrationData »
   
 C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.cpp(252,22): warning C4273: 'la::Controller::updateInputs' : liaison DLL incohérente
   (compiler le fichier source '/Controller.cpp')
-      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(134,8):
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Controller.h(133,8):
       voir la définition précédente de « la::Controller::updateInputs »
   
+  dllmain.cpp
+  Identification.cpp
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(12,15): warning C4251: « la::Identification::name ’ : « std::basic_string<char,std::char_traits<char>,std::allocator<char>> » doit avoir dll-interface pour être utilisé par les clients de « la::Identification »
+  (compiler le fichier source '/Identification.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xstring(541,7):
+      voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(6,21): warning C4273: 'la::Identification::Identification' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(20,3):
+      voir la définition précédente de « la::Identification::Identification »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(10,22): warning C4273: 'la::Identification::~Identification' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(21,4):
+      voir la définition précédente de « la::Identification::~Identification »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(14,26): warning C4273: 'la::Identification::initialize' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(24,8):
+      voir la définition précédente de « la::Identification::initialize »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(23,26): warning C4273: 'la::Identification::connectToController' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(25,8):
+      voir la définition précédente de « la::Identification::connectToController »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(85,26): warning C4273: 'la::Identification::disconnect' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(26,8):
+      voir la définition précédente de « la::Identification::disconnect »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(96,33): warning C4273: 'la::Identification::getName' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(29,15):
+      voir la définition précédente de « la::Identification::getName »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(100,34): warning C4273: 'la::Identification::getVendorID' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(30,16):
+      voir la définition précédente de « la::Identification::getVendorID »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(104,34): warning C4273: 'la::Identification::getProductID' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(31,16):
+      voir la définition précédente de « la::Identification::getProductID »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(108,36): warning C4273: 'la::Identification::getSerialNumber' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(32,18):
+      voir la définition précédente de « la::Identification::getSerialNumber »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(112,26): warning C4273: 'la::Identification::isInitialized' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(33,8):
+      voir la définition précédente de « la::Identification::isInitialized »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(116,52): warning C4273: 'la::Identification::listControllers' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(36,41):
+      voir la définition précédente de « la::Identification::listControllers »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(155,26): warning C4273: 'la::Identification::freeControllersList' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(37,15):
+      voir la définition précédente de « la::Identification::freeControllersList »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(163,26): warning C4273: 'la::Identification::isDualSense' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(40,8):
+      voir la définition précédente de « la::Identification::isDualSense »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(167,26): warning C4273: 'la::Identification::isXboxController' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(41,8):
+      voir la définition précédente de « la::Identification::isXboxController »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(171,33): warning C4273: 'la::Identification::getDevice' : liaison DLL incohérente
+  (compiler le fichier source '/Identification.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.h(44,15):
+      voir la définition précédente de « la::Identification::getDevice »
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(4813,18): warning C4244: '=' : conversion de 'wchar_t' en 'char', perte possible de données
+  (compiler le fichier source '/Identification.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(4813,18):
+      le contexte d’instanciation du modèle (le plus ancien) est
+          C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(39,35):
+          voir la référence à l'instanciation de la fonction modèle 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' en cours de compilation
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+              C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Identification.cpp(39,22):
+              voir la première référence à « std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string » dans « la::Identification::connectToController »
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xstring(812,17):
+          voir la référence à l'instanciation de la fonction modèle 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' en cours de compilation
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xstring(968,18):
+          voir la référence à l'instanciation de la fonction modèle '_OutIt *std::_Copy_n_unchecked4<wchar_t*,_Size,char*>(_InIt,_SizeTy,_OutIt)' en cours de compilation
+          with
+          [
+              _OutIt=char *,
+              _Size=unsigned __int64,
+              _InIt=wchar_t *,
+              _SizeTy=unsigned __int64
+          ]
+  
+  Joystick.cpp
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Joystick.cpp(4,15): warning C4273: 'la::Joystick::Joystick' : liaison DLL incohérente
+  (compiler le fichier source '/Joystick.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Joystick.h(12,3):
+      voir la définition précédente de « la::Joystick::Joystick »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Joystick.cpp(6,28): warning C4273: 'la::Joystick::getAxis' : liaison DLL incohérente
+  (compiler le fichier source '/Joystick.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Joystick.h(13,16):
+      voir la définition précédente de « la::Joystick::getAxis »
+  
+  Trigger.cpp
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Trigger.cpp(4,14): warning C4273: 'la::Trigger::Trigger' : liaison DLL incohérente
+  (compiler le fichier source '/Trigger.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Trigger.h(10,3):
+      voir la définition précédente de « la::Trigger::Trigger »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Trigger.cpp(6,20): warning C4273: 'la::Trigger::getValue' : liaison DLL incohérente
+  (compiler le fichier source '/Trigger.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Trigger.h(11,9):
+      voir la définition précédente de « la::Trigger::getValue »
+  
+  Vector.cpp
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Vector.cpp(8,15): warning C4273: 'la::Vector2f::Vector2f' : liaison DLL incohérente
+  (compiler le fichier source '/Vector.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Vector.h(14,9):
+      voir la définition précédente de « la::Vector2f::Vector2f »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Vector.cpp(13,28): warning C4273: 'la::Vector2f::normalized' : liaison DLL incohérente
+  (compiler le fichier source '/Vector.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Vector.h(22,18):
+      voir la définition précédente de « la::Vector2f::normalized »
+  
+C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Vector.cpp(22,21): warning C4273: 'la::Vector2f::length' : liaison DLL incohérente
+  (compiler le fichier source '/Vector.cpp')
+      C:\Users\wolph\source\repos\LA-Controller\LA-Controller\LA-Controller\Vector.h(24,15):
+      voir la définition précédente de « la::Vector2f::length »
+  
+  Génération de code en cours...
+     Création de la bibliothèque C:\Users\wolph\source\repos\LA-Controller\LA-Controller\x64\Debug\LA-Controller.lib et de l'objet C:\Users\wolph\source\repos\LA-Controller\LA-Controller\x64\Debug\LA-Controller.exp
+LINK : warning LNK4217: le symbole '?getDevice@Identification@la@@QEBAPEAUhid_device_@@XZ (public: struct hid_device_ * __cdecl la::Identification::getDevice(void)const )' défini dans 'Identification.obj' est importé par 'Button.obj' dans la fonction '"private: void __cdecl la::Button::readHIDButtonData(void)" (?readHIDButtonData@Button@la@@AEAAXXZ)'
+LINK : warning LNK4286: le symbole '?getDevice@Identification@la@@QEBAPEAUhid_device_@@XZ (public: struct hid_device_ * __cdecl la::Identification::getDevice(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj'
+LINK : warning LNK4217: le symbole '?getIdentification@Controller@la@@QEAAAEAVIdentification@2@XZ (public: class la::Identification & __cdecl la::Controller::getIdentification(void))' défini dans 'Controller.obj' est importé par 'Button.obj' dans la fonction '"private: void __cdecl la::Button::readHIDButtonData(void)" (?readHIDButtonData@Button@la@@AEAAXXZ)'
+LINK : warning LNK4217: le symbole '?isConnected@Controller@la@@QEAA_NXZ (public: bool __cdecl la::Controller::isConnected(void))' défini dans 'Controller.obj' est importé par 'Button.obj' dans la fonction '"public: bool __cdecl la::Button::isPressed(enum la::ControllerType::Dualsense)" (?isPressed@Button@la@@QEAA_NW4Dualsense@ControllerType@2@@Z)'
+LINK : warning LNK4217: le symbole '?isDualSense@Controller@la@@QEBA_NXZ (public: bool __cdecl la::Controller::isDualSense(void)const )' défini dans 'Controller.obj' est importé par 'Button.obj' dans la fonction '"private: void __cdecl la::Button::readHIDButtonData(void)" (?readHIDButtonData@Button@la@@AEAAXXZ)'
+LINK : warning LNK4217: le symbole '?isXboxController@Controller@la@@QEBA_NXZ (public: bool __cdecl la::Controller::isXboxController(void)const )' défini dans 'Controller.obj' est importé par 'Button.obj' dans la fonction '"private: void __cdecl la::Button::readHIDButtonData(void)" (?readHIDButtonData@Button@la@@AEAAXXZ)'
+LINK : warning LNK4217: le symbole '??0Identification@la@@QEAA@XZ (public: __cdecl la::Identification::Identification(void))' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: __cdecl la::Controller::Controller(void)" (??0Controller@la@@QEAA@XZ)'
+LINK : warning LNK4217: le symbole '??1Identification@la@@QEAA@XZ (public: __cdecl la::Identification::~Identification(void))' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"int `public: __cdecl la::Controller::Controller(void)'::`1'::dtor$0" (?dtor$0@?0???0Controller@la@@QEAA@XZ@4HA)'
+LINK : warning LNK4217: le symbole '?connectToController@Identification@la@@QEAA_NII@Z (public: bool __cdecl la::Identification::connectToController(unsigned int,unsigned int))' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: bool __cdecl la::Controller::connectController(unsigned int,unsigned int)" (?connectController@Controller@la@@QEAA_NII@Z)'
+LINK : warning LNK4217: le symbole '?disconnect@Identification@la@@QEAAXXZ (public: void __cdecl la::Identification::disconnect(void))' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: void __cdecl la::Controller::disconnectController(void)" (?disconnectController@Controller@la@@QEAAXXZ)'
+LINK : warning LNK4217: le symbole '?getName@Identification@la@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ (public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl la::Identification::getName(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl la::Controller::getControllerName(void)const " (?getControllerName@Controller@la@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ)'
+LINK : warning LNK4217: le symbole '?getVendorID@Identification@la@@QEBAIXZ (public: unsigned int __cdecl la::Identification::getVendorID(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: unsigned int __cdecl la::Controller::getVendorID(void)const " (?getVendorID@Controller@la@@QEBAIXZ)'
+LINK : warning LNK4217: le symbole '?getProductID@Identification@la@@QEBAIXZ (public: unsigned int __cdecl la::Identification::getProductID(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: unsigned int __cdecl la::Controller::getProductID(void)const " (?getProductID@Controller@la@@QEBAIXZ)'
+LINK : warning LNK4217: le symbole '?getSerialNumber@Identification@la@@QEBAPEB_WXZ (public: wchar_t const * __cdecl la::Identification::getSerialNumber(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: wchar_t const * __cdecl la::Controller::getSerialNumber(void)const " (?getSerialNumber@Controller@la@@QEBAPEB_WXZ)'
+LINK : warning LNK4217: le symbole '?isInitialized@Identification@la@@QEBA_NXZ (public: bool __cdecl la::Identification::isInitialized(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: bool __cdecl la::Controller::isConnected(void)" (?isConnected@Controller@la@@QEAA_NXZ)'
+LINK : warning LNK4217: le symbole '?isDualSense@Identification@la@@QEBA_NXZ (public: bool __cdecl la::Identification::isDualSense(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: bool __cdecl la::Controller::isDualSense(void)const " (?isDualSense@Controller@la@@QEBA_NXZ)'
+LINK : warning LNK4217: le symbole '?isXboxController@Identification@la@@QEBA_NXZ (public: bool __cdecl la::Identification::isXboxController(void)const )' défini dans 'Identification.obj' est importé par 'Controller.obj' dans la fonction '"public: bool __cdecl la::Controller::isXboxController(void)const " (?isXboxController@Controller@la@@QEBA_NXZ)'
+LINK : warning LNK4217: le symbole '??0Button@la@@QEAA@AEAVController@1@@Z (public: __cdecl la::Button::Button(class la::Controller &))' défini dans 'Button.obj' est importé par 'Controller.obj' dans la fonction '"public: __cdecl la::Controller::Controller(void)" (??0Controller@la@@QEAA@XZ)'
+LINK : warning LNK4217: le symbole '?updateButtonStates@Button@la@@QEAAXXZ (public: void __cdecl la::Button::updateButtonStates(void))' défini dans 'Button.obj' est importé par 'Controller.obj' dans la fonction '"public: void __cdecl la::Controller::updateInputs(void)" (?updateInputs@Controller@la@@QEAAXXZ)'
+LINK : warning LNK4217: le symbole '??0Joystick@la@@QEAA@XZ (public: __cdecl la::Joystick::Joystick(void))' défini dans 'Joystick.obj' est importé par 'Controller.obj' dans la fonction '"public: __cdecl la::Controller::Controller(void)" (??0Controller@la@@QEAA@XZ)'
+LINK : warning LNK4217: le symbole '??0Trigger@la@@QEAA@XZ (public: __cdecl la::Trigger::Trigger(void))' défini dans 'Trigger.obj' est importé par 'Controller.obj' dans la fonction '"public: __cdecl la::Controller::Controller(void)" (??0Controller@la@@QEAA@XZ)'
+LINK : warning LNK4217: le symbole '??0Vector2f@la@@QEAA@MM@Z (public: __cdecl la::Vector2f::Vector2f(float,float))' défini dans 'Vector.obj' est importé par 'Joystick.obj' dans la fonction '"public: __cdecl la::Joystick::Joystick(void)" (??0Joystick@la@@QEAA@XZ)'
   LA-Controller.vcxproj -> C:\Users\wolph\source\repos\LA-Controller\LA-Controller\x64\Debug\LA-Controller.dll
