@@ -16,6 +16,8 @@ namespace la {
         // Constructeur avec référence au controller parent
         Button(Controller *controller = nullptr);
 
+		~Button() = default;
+
         // Méthodes pour lire l'état des boutons
         [[nodiscard]] bool isPressed(la::ControllerType::Dualsense button);
         [[nodiscard]] bool isPressed(la::ControllerType::Xbox button);
