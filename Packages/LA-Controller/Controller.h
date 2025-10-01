@@ -95,7 +95,7 @@ namespace la {
 		bool autoDetectAndConnect();
 		void disconnectController();
 
-		// Getters pour identification - ENLEVÉ inline
+		// Getters pour identification
 		std::string getControllerName() const;
 		unsigned int getVendorID() const;
 		unsigned int getProductID() const;

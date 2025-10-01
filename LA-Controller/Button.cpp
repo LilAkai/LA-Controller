@@ -1,26 +1,22 @@
-#include "pch.h"
-#include "../Packages/LA-Controller/Button.h"
+ï»¿#include "pch.h"
 #include "HID/hidapi.h"
+#include "../Packages/LA-Controller/Button.h"
 #include "../Packages/LA-Controller/Controller.h"
 
-// Implémentation complète de Button - à ajouter dans Controller.cpp
-
 la::Button::Button(Controller &controller): parent(controller) {
-    // Initialiser tous les boutons comme non pressés
+    // Initialize all buttons as not pressed
     for (int i = 0; i<maxButtons; i++) {
         buttonStates[i] = false;
     }
 }
 
-bool la::Button::isPressed(la::ControllerType::Dualsense button) {
+bool la::Button::isPressed(const la::ControllerType::Dualsense button) {
     if (!&parent||!parent.isConnected()) {
         return false;
     }
 
-    // Mettre à jour l'état des boutons
     updateButtonStates();
 
-    // Vérifier si l'index du bouton est valide
     unsigned int buttonIndex = static_cast<unsigned int>(button);
     if (buttonIndex>=maxButtons) {
         return false;
@@ -34,10 +30,8 @@ bool la::Button::isPressed(la::ControllerType::Xbox button) {
         return false;
     }
 
-    // Mettre à jour l'état des boutons
     updateButtonStates();
 
-    // Vérifier si l'index du bouton est valide
     unsigned int buttonIndex = static_cast<unsigned int>(button);
     if (buttonIndex>=maxButtons) {
         return false;
@@ -48,14 +42,14 @@ bool la::Button::isPressed(la::ControllerType::Xbox button) {
 
 void la::Button::updateButtonStates() {
     if (!&parent||!parent.isConnected()) {
-        // Si pas de contrôleur, tous les boutons sont relâchés
+        // If no controller, all buttons are released
         for (int i = 0; i<maxButtons; i++) {
             buttonStates[i] = false;
         }
         return;
     }
 
-    // Lire les données depuis le contrôleur HID
+    // Read the HID button data
     readHIDButtonData();
 }
 
@@ -66,59 +60,70 @@ void la::Button::readHIDButtonData() {
     if (!device) return;
 
     if (parent.isDualSense()) {
-        // Lecture des données DualSense
+        // Read input report
         unsigned char inputData[64];
         int bytesRead = hid_read_timeout(device, inputData, sizeof(inputData), 10); // 10ms timeout
 
-        if (bytesRead>0) {
-            // DualSense input report format (USB mode)
-            if (inputData[0]==0x01) { // Report ID pour input standard
-                // Les boutons sont dans les octets 5 et 6
-                unsigned char buttons1 = inputData[5]; // Triangle, Circle, Cross, Square, etc.
-                unsigned char buttons2 = inputData[6]; // L1, R1, L2, R2, etc.
-                unsigned char buttons3 = inputData[7]; // Options, Share, etc.
+        if (bytesRead>0&&inputData[0]==0x01) {
+            // ----- DualSense official USB report mapping -----
+            unsigned char face = inputData[8];
+            // Croix, Rond, CarrÃ©, Triangle
+            buttonStates[la::ControllerType::Square] = (face&0x10)!=0;
+            buttonStates[la::ControllerType::Cross] = (face&0x20)!=0;
+            buttonStates[la::ControllerType::Circle] = (face&0x40)!=0;
+            buttonStates[la::ControllerType::Triangle] = (face&0x80)!=0;
+            // D-pad (hat), Ã  mapper selon besoin : 
+            // Up:   ((face & 0x0F) == 0), Right: ==2, Down: ==4, Left: ==6, etc.
 
-                // Décoder les boutons individuels
-                buttonStates[la::ControllerType::Cross] = (buttons1&0x01)!=0;
-                buttonStates[la::ControllerType::Circle] = (buttons1&0x02)!=0;
-                buttonStates[la::ControllerType::Square] = (buttons1&0x04)!=0;
-                buttonStates[la::ControllerType::Triangle] = (buttons1&0x08)!=0;
+            unsigned char misc = inputData[9];
+            buttonStates[la::ControllerType::L1] = (misc&0x01)!=0;
+            buttonStates[la::ControllerType::R1] = (misc&0x02)!=0;
+            /*buttonStates[la::ControllerType::L2] = (misc&0x04)!=0;
+            buttonStates[la::ControllerType::R2] = (misc&0x08)!=0;
+            buttonStates[la::ControllerType::Create] = (misc&0x10)!=0;*/
+            buttonStates[la::ControllerType::Options] = (misc&0x20)!=0;
+            buttonStates[la::ControllerType::LStick_DS] = (misc&0x40)!=0;
+            buttonStates[la::ControllerType::RStick_DS] = (misc&0x80)!=0;
 
-                buttonStates[la::ControllerType::L1] = (buttons2&0x01)!=0;
-                buttonStates[la::ControllerType::R1] = (buttons2&0x02)!=0;
+            unsigned char extra = inputData[10];
+            buttonStates[la::ControllerType::PS] = (extra&0x01)!=0;
+            buttonStates[la::ControllerType::TouchPad] = (extra&0x02)!=0;
+            buttonStates[la::ControllerType::Mute] = (extra&0x04)!=0;
 
-                buttonStates[la::ControllerType::Share] = (buttons3&0x01)!=0;
-                buttonStates[la::ControllerType::Options] = (buttons3&0x02)!=0;
-                buttonStates[la::ControllerType::LStick_DS] = (buttons3&0x04)!=0;
-                buttonStates[la::ControllerType::RStick_DS] = (buttons3&0x08)!=0;
-            }
+            // Si manette DualSense Edgeâ€¯: les palettes sont gÃ©nÃ©ralement dans inputData[11] et/ou [12]
+            // Il faut tester et observer les bits qui changent au press Release palette
+            // Exemple (Ã  ajuster selon expÃ©rimentation)Â :
+            // unsigned char edgePaddles = inputData[11];
+            // buttonStates[la::ControllerType::PaddleL] = (edgePaddles & 0x01) != 0;
+            // buttonStates[la::ControllerType::PaddleR] = (edgePaddles & 0x02) != 0;
         }
-
     } else if (parent.isXboxController()) {
-        // Lecture des données Xbox Controller
         unsigned char inputData[64];
         int bytesRead = hid_read_timeout(device, inputData, sizeof(inputData), 10);
 
-        if (bytesRead>0) {
-            // Xbox input report format
-            if (inputData[0]==0x01) { // Report ID
-                unsigned char buttons1 = inputData[2];
-                unsigned char buttons2 = inputData[3];
+        if (bytesRead>0&&inputData[0]==0x01) {
+            unsigned char buttons1 = inputData[2];
+            unsigned char buttons2 = inputData[3];
 
-                // Décoder les boutons Xbox
-                buttonStates[la::ControllerType::A] = (buttons1&0x01)!=0;
-                buttonStates[la::ControllerType::B] = (buttons1&0x02)!=0;
-                buttonStates[la::ControllerType::X] = (buttons1&0x04)!=0;
-                buttonStates[la::ControllerType::Y] = (buttons1&0x08)!=0;
+            buttonStates[la::ControllerType::A] = (buttons1&0x01)!=0;
+            buttonStates[la::ControllerType::B] = (buttons1&0x02)!=0;
+            buttonStates[la::ControllerType::X] = (buttons1&0x04)!=0;
+            buttonStates[la::ControllerType::Y] = (buttons1&0x08)!=0;
 
-                buttonStates[la::ControllerType::LB] = (buttons1&0x10)!=0;
-                buttonStates[la::ControllerType::RB] = (buttons1&0x20)!=0;
+            buttonStates[la::ControllerType::LB] = (buttons1&0x10)!=0;
+            buttonStates[la::ControllerType::RB] = (buttons1&0x20)!=0;
 
-                buttonStates[la::ControllerType::Select] = (buttons2&0x01)!=0;
-                buttonStates[la::ControllerType::Start] = (buttons2&0x02)!=0;
-                buttonStates[la::ControllerType::LStick_Xbox] = (buttons2&0x04)!=0;
-                buttonStates[la::ControllerType::RStick_Xbox] = (buttons2&0x08)!=0;
-            }
+            buttonStates[la::ControllerType::Select] = (buttons2&0x01)!=0;
+            buttonStates[la::ControllerType::Start] = (buttons2&0x02)!=0;
+            buttonStates[la::ControllerType::LStick_Xbox] = (buttons2&0x04)!=0;
+            buttonStates[la::ControllerType::RStick_Xbox] = (buttons2&0x08)!=0;
+
+            // Palettes Elite = inputData[5] (en gÃ©nÃ©ral)
+            // unsigned char paddles = inputData[5];
+            // buttonStates[la::ControllerType::Paddle1] = (paddles & 0x01) != 0;
+            // buttonStates[la::ControllerType::Paddle2] = (paddles & 0x02) != 0;
+            // buttonStates[la::ControllerType::Paddle3] = (paddles & 0x04) != 0;
+            // buttonStates[la::ControllerType::Paddle4] = (paddles & 0x08) != 0;
         }
     }
 }

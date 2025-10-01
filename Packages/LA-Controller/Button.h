@@ -5,28 +5,33 @@
 namespace la {
     class Controller;
     class LA_CONTROLLER_API Button {
-    private:
+    private: /*--VARIABLES--*/
         static constexpr unsigned int maxButtons{ 32 };
-        Controller &parent; // Référence vers le contrôleur parent
+		Controller &parent; // Reference to the parent controller
 
-        // Buffer pour stocker l'état des boutons lu depuis HID
+		// Buffer to store button states read from HID
         bool buttonStates[maxButtons];
 
-    public:
-        // Constructeur avec référence au controller parent
+
+
+    private: /*--FUNCTIONS--*/
+
+        // Internal function to read HID data
+        void readHIDButtonData();
+
+
+
+    public: /*--FUNCTIONS--*/
+		// Constructor with reference to parent controller
         Button(Controller &controller);
         Button() = default;
         ~Button() = default;
 
-        // Méthodes pour lire l'état des boutons
+		// Functions to read button states
         [[nodiscard]] bool isPressed(la::ControllerType::Dualsense button);
         [[nodiscard]] bool isPressed(la::ControllerType::Xbox button);
 
-        // Méthode pour mettre à jour l'état des boutons depuis HID
+		// Function to update button states from HID
         void updateButtonStates();
-
-        // Méthode interne pour lire les données HID
-    private:
-        void readHIDButtonData();
     };
 }

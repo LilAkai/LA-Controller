@@ -4,35 +4,39 @@
 namespace la {
 	namespace ControllerType {
 		enum Xbox {
-			A = 0,
+			A,
 			B,
 			X,
 			Y,
 
-			Start = 7,
-			Select = 6,
+			Start,
+			Home,
+			Select,
 
-			LB = 4,
-			RB = 5,
+			LB,
+			RB,
 
-			LStick_Xbox = 8,
-			RStick_Xbox = 9
+			LStick_Xbox,
+			RStick_Xbox
 		};
 
 		enum Dualsense {
-			Cross = 0,
+			Cross,
 			Circle,
 			Square,
 			Triangle,
 
-			Options = 7,
-			Share = 6,
+			Options,
+			PS,
+			TouchPad,
+			Mute,
+			Share,
 
-			L1 = 4,
-			R1 = 5,
+			L1,
+			R1,
 
-			LStick_DS = 8,
-			RStick_DS = 9
+			LStick_DS,
+			RStick_DS
 		};
 	}
 }

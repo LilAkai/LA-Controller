@@ -149,6 +149,9 @@ unsigned int la::Properties::getPaddlesCount() {
 
 
 
+
+
+
 void la::Controller::vibrate(float duration) {
     vibrateWithIntensity(duration, 1.0f, 1.0f);
 }
@@ -204,7 +207,7 @@ void la::Controller::vibrationWorker(float duration, float leftIntensity, float 
     sendVibrationData(0.0f, 0.0f);
     isVibrating = false;
 
-    std::cout<<"Vibration terminée après "<<duration<<"s"<<std::endl;
+    //std::cout<<"Vibration terminée après "<<duration<<"s"<<std::endl;
 }
 
 void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity) {
@@ -248,7 +251,7 @@ void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity
     }
 }
 
-// Méthode pour mettre à jour tous les inputs (à appeler dans votre boucle de jeu)
+// Function to update all inputs (to be called in your game loop)
 void la::Controller::updateInputs() {
     if (isConnected()) {
         this->button.updateButtonStates(); //TODO : mettre a jour les joysticks et les triggers
