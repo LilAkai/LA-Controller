@@ -5,7 +5,6 @@
 
 //HID INCLUDES
 #include "HID/hidapi.h"
-//#include "HID/hidapi_winapi.h"
 
 //LA_CONTROLLER INCLUDES
 #include "Export.h"
@@ -16,6 +15,7 @@
 #include "Button.h"
 #include "Joystick.h"
 #include "Trigger.h"
+#include "Dpad.h"
 
 #define SONY_VENDOR_ID 0x054C
 #define DUALSENSE_PRODUCT_ID 0x0CE6
@@ -107,6 +107,7 @@ namespace la {
 		//joysticks
 		Joystick rightJoystick;
 		Joystick leftJoystick;
+		DPAD dpad;
 
 		//triggers
 		Trigger rightTrigger;

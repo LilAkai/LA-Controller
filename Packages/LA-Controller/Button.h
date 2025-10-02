@@ -4,6 +4,8 @@
 
 namespace la {
     class Controller;
+
+
     class LA_CONTROLLER_API Button {
     private: /*--VARIABLES--*/
         static constexpr unsigned int maxButtons{ 32 };

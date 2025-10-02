@@ -154,6 +154,7 @@ sfml-network.lib
     <ClInclude Include="..\Packages\LA-Controller\Button.h" />
     <ClInclude Include="..\Packages\LA-Controller\Controller.h" />
     <ClInclude Include="..\Packages\LA-Controller\ControllerType.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Dpad.h" />
     <ClInclude Include="..\Packages\LA-Controller\Export.h" />
     <ClInclude Include="..\Packages\LA-Controller\Identification.h" />
     <ClInclude Include="..\Packages\LA-Controller\Joystick.h" />
@@ -166,6 +167,7 @@ sfml-network.lib
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Dpad.cpp" />
     <ClCompile Include="Identification.cpp" />
     <ClCompile Include="Joystick.cpp" />
     <ClCompile Include="pch.cpp">

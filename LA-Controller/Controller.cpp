@@ -2,15 +2,13 @@
 #include "LA-Controller/Controller.h"
 
 #include <iostream>
-#include <thread>
-#include <chrono>
 #include <algorithm>
 
 int la::Init() {
     return hid_init();
 }
 
-la::Controller::Controller(): button(*this), connected(false), isVibrating(false) {
+la::Controller::Controller(): button(*this), connected(false), isVibrating(false), rightJoystick(*this), leftJoystick(*this), dpad(*this){
 	properties.var_hasAudioOutput = false;
 	properties.var_hasMicrophone = false;
 	properties.var_hasGyroscope = false;
@@ -255,5 +253,8 @@ void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity
 void la::Controller::updateInputs() {
     if (isConnected()) {
         this->button.updateButtonStates(); //TODO : mettre a jour les joysticks et les triggers
+		this->leftJoystick.updateAxisStates();
+		this->rightJoystick.updateAxisStates();
+		this->dpad.update(this->leftJoystick.getDpadDirection());
     }
 }

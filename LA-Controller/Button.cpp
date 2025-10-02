@@ -65,7 +65,6 @@ void la::Button::readHIDButtonData() {
         int bytesRead = hid_read_timeout(device, inputData, sizeof(inputData), 10); // 10ms timeout
 
         if (bytesRead>0&&inputData[0]==0x01) {
-            // ----- DualSense official USB report mapping -----
             unsigned char face = inputData[8];
             // Croix, Rond, Carré, Triangle
             buttonStates[la::ControllerType::Square] = (face&0x10)!=0;
@@ -79,8 +78,8 @@ void la::Button::readHIDButtonData() {
             buttonStates[la::ControllerType::L1] = (misc&0x01)!=0;
             buttonStates[la::ControllerType::R1] = (misc&0x02)!=0;
             /*buttonStates[la::ControllerType::L2] = (misc&0x04)!=0;
-            buttonStates[la::ControllerType::R2] = (misc&0x08)!=0;
-            buttonStates[la::ControllerType::Create] = (misc&0x10)!=0;*/
+            buttonStates[la::ControllerType::R2] = (misc&0x08)!=0;*/
+            buttonStates[la::ControllerType::Share] = (misc&0x10)!=0;
             buttonStates[la::ControllerType::Options] = (misc&0x20)!=0;
             buttonStates[la::ControllerType::LStick_DS] = (misc&0x40)!=0;
             buttonStates[la::ControllerType::RStick_DS] = (misc&0x80)!=0;
@@ -90,9 +89,6 @@ void la::Button::readHIDButtonData() {
             buttonStates[la::ControllerType::TouchPad] = (extra&0x02)!=0;
             buttonStates[la::ControllerType::Mute] = (extra&0x04)!=0;
 
-            // Si manette DualSense Edge : les palettes sont généralement dans inputData[11] et/ou [12]
-            // Il faut tester et observer les bits qui changent au press Release palette
-            // Exemple (à ajuster selon expérimentation) :
             // unsigned char edgePaddles = inputData[11];
             // buttonStates[la::ControllerType::PaddleL] = (edgePaddles & 0x01) != 0;
             // buttonStates[la::ControllerType::PaddleR] = (edgePaddles & 0x02) != 0;
@@ -103,7 +99,6 @@ void la::Button::readHIDButtonData() {
 
         if (bytesRead>0&&inputData[0]==0x01) {
             unsigned char buttons1 = inputData[2];
-            unsigned char buttons2 = inputData[3];
 
             buttonStates[la::ControllerType::A] = (buttons1&0x01)!=0;
             buttonStates[la::ControllerType::B] = (buttons1&0x02)!=0;
@@ -113,10 +108,12 @@ void la::Button::readHIDButtonData() {
             buttonStates[la::ControllerType::LB] = (buttons1&0x10)!=0;
             buttonStates[la::ControllerType::RB] = (buttons1&0x20)!=0;
 
+            unsigned char buttons2 = inputData[3];
             buttonStates[la::ControllerType::Select] = (buttons2&0x01)!=0;
             buttonStates[la::ControllerType::Start] = (buttons2&0x02)!=0;
             buttonStates[la::ControllerType::LStick_Xbox] = (buttons2&0x04)!=0;
             buttonStates[la::ControllerType::RStick_Xbox] = (buttons2&0x08)!=0;
+            buttonStates[la::ControllerType::Home] = (buttons2&0x10)!=0;
 
             // Palettes Elite = inputData[5] (en général)
             // unsigned char paddles = inputData[5];
