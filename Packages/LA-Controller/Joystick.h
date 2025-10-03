@@ -3,6 +3,11 @@
 #include "Vector.h"
 
 namespace la {
+    enum stickType {
+        LeftStick,
+        RightStick
+	};
+
     class Controller;
 
     class LA_CONTROLLER_API Joystick {
@@ -11,7 +16,6 @@ namespace la {
         Controller &parent; // Référence vers le contrôleur parent
 
         la::Vector2f axes[axisCount]; // Pour sticks et triggers
-        int dpadDirection = 8; // Neutre par défaut (aucun appui)
 
     private: /*--FUNCTIONS--*/
         void readHIDAxisData();
@@ -21,13 +25,15 @@ namespace la {
         Joystick() = default;
         ~Joystick() = default;
 
-        // Accès axes sticks analogiques
+        /*
+		@brief Acces to joystick's axes
+		@param axisIndex Index of the axis (0 or 1)
+		@return Vector2f representing the axis state (-1.0 to 1.0 for both x and y)
+        */
         [[nodiscard]] la::Vector2f getAxis(unsigned int axisIndex);
-
-        // Accès D-Pad numérique (0-7 directions, 8 = neutre)
-        [[nodiscard]] int getDpadDirection();
 
         // Mise à jour axes + Dpad via HID
         void updateAxisStates();
+
     };
 }

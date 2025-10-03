@@ -6,17 +6,13 @@
 
 namespace la {
         
-    Joystick::Joystick(Controller &controller): parent(controller), axes {la::Vector2f(0.0f, 0.0f), la::Vector2f(0.0f, 0.0f)}, dpadDirection(8) {
+    Joystick::Joystick(Controller &controller): parent(controller), axes {la::Vector2f(0.0f, 0.0f), la::Vector2f(0.0f, 0.0f)} {
     }
 
     la::Vector2f Joystick::getAxis(unsigned int axisIndex) {
         if (axisIndex>=axisCount)
             return la::Vector2f(0.0f, 0.0f);
         return axes[axisIndex];
-    }
-
-    int Joystick::getDpadDirection() {
-        return dpadDirection;
     }
 
     void Joystick::updateAxisStates() {
@@ -27,7 +23,6 @@ namespace la {
         if (!&parent||!parent.isConnected()) {
             for (unsigned int i = 0; i<axisCount; ++i)
                 axes[i] = la::Vector2f(0.0f, 0.0f);
-            dpadDirection = 8;
             return;
         }
 
@@ -45,13 +40,9 @@ namespace la {
                 return n;
             };
 
-
             // Normalize X/Y des sticks sur [-1, 1] avec 0 au centre (val=128)
             axes[0] = la::Vector2f(normalize(inputData[1]), -normalize(inputData[2])); // stick gauche (inversion Y si besoin)
             axes[1] = la::Vector2f(normalize(inputData[3]), -normalize(inputData[4])); // stick droit
-
-            // D-Pad
-            dpadDirection = inputData[8]&0x0F;
         }
     }
 }

@@ -14,14 +14,9 @@ namespace la {
 		// Buffer to store button states read from HID
         bool buttonStates[maxButtons];
 
-
-
     private: /*--FUNCTIONS--*/
-
         // Internal function to read HID data
         void readHIDButtonData();
-
-
 
     public: /*--FUNCTIONS--*/
 		// Constructor with reference to parent controller
