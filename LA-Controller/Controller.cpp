@@ -255,6 +255,6 @@ void la::Controller::updateInputs() {
         this->button.updateButtonStates(); //TODO : mettre a jour les joysticks et les triggers
 		this->leftJoystick.updateAxisStates();
 		this->rightJoystick.updateAxisStates();
-		this->dpad.update(this->leftJoystick.getDpadDirection());
+		this->dpad.update();
     }
 }

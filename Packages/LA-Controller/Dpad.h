@@ -28,7 +28,7 @@ namespace la {
         ~DPAD() = default;
 
         // Met à jour la direction brute lue depuis HID
-        void update(unsigned char rawValue);
+        void update();
 
         // Retourne la direction sous forme énumérée
         [[nodiscard]] DpadDirection getDirection() const;

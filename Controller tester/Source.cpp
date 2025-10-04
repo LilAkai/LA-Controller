@@ -13,7 +13,7 @@ void main() {
     la::Controller ctrl;
     ctrl.autoDetectAndConnect();
 
-    // 🎮 Map DualSense
+    // Map DualSense
     const std::unordered_map<dualsense, std::string> dualsenseButtons = {
         {dualsense::Cross, "Cross"},
         {dualsense::Circle, "Circle"},
@@ -30,7 +30,7 @@ void main() {
         {dualsense::RStick_DS, "Right Stick"}
     };
 
-    // 🎮 Map Xbox
+    // Map Xbox
     const std::unordered_map<xbox, std::string> xboxButtons = {
         {xbox::A, "A"},
         {xbox::B, "B"},
@@ -84,6 +84,8 @@ void main() {
             } else {
                 std::cout<<"Manette non reconnue\n";
             }
+        } else if (!ctrl.isConnected()) {
+			ctrl.autoDetectAndConnect();
         }
     }
 
