@@ -158,6 +158,7 @@ sfml-network.lib
     <ClInclude Include="..\Packages\LA-Controller\Export.h" />
     <ClInclude Include="..\Packages\LA-Controller\Identification.h" />
     <ClInclude Include="..\Packages\LA-Controller\Joystick.h" />
+    <ClInclude Include="..\Packages\LA-Controller\Touchpad.h" />
     <ClInclude Include="..\Packages\LA-Controller\Trigger.h" />
     <ClInclude Include="..\Packages\LA-Controller\Vector.h" />
     <ClInclude Include="framework.h" />
@@ -176,6 +177,7 @@ sfml-network.lib
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Touchpad.cpp" />
     <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>

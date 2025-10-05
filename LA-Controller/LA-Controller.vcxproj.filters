@@ -63,6 +63,9 @@
     <ClInclude Include="..\Packages\LA-Controller\Dpad.h">
       <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
     </ClInclude>
+    <ClInclude Include="..\Packages\LA-Controller\Touchpad.h">
+      <Filter>Fichiers d%27en-tête\LA_controller\lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vector.cpp">
@@ -90,6 +93,9 @@
       <Filter>Fichiers sources\blc</Filter>
     </ClCompile>
     <ClCompile Include="Dpad.cpp">
+      <Filter>Fichiers sources\LA_controller\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="Touchpad.cpp">
       <Filter>Fichiers sources\LA_controller\lib</Filter>
     </ClCompile>
   </ItemGroup>
