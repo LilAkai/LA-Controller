@@ -59,10 +59,17 @@ void main() {
                     std::cout<<"Dpad direction: "<<static_cast<int>(ctrl.dpad.getDirection())<<"\n";
                 }
                 if (ctrl.leftJoystick.getAxis(0).length()>0.1f) {
-                    std::cout<<"Left Stick: ("<<ctrl.leftJoystick.getAxis(0).x<<", "<<ctrl.leftJoystick.getAxis(0).y<<")\n";
+                    std::cout<<"Left Stick: {"<<ctrl.leftJoystick.getAxis(0).x<<", "<<ctrl.leftJoystick.getAxis(0).y<<"}\n";
 				}
                 if (ctrl.rightJoystick.getAxis(1).length()>0.1f) {
-                    std::cout<<"Right Stick: ("<<ctrl.rightJoystick.getAxis(1).x<<", "<<ctrl.rightJoystick.getAxis(1).y<<")\n";
+                    std::cout<<"Right Stick: {"<<ctrl.rightJoystick.getAxis(1).x<<", "<<ctrl.rightJoystick.getAxis(1).y<<"}\n";
+                }
+                if (ctrl.leftTrigger.getValue()>0.01f) {
+                    std::cout<<"Left Trigger: "<<ctrl.leftTrigger.getValue()<<"\n";
+                }
+                if (ctrl.rightTrigger.getValue()>0.01f) {
+                    std::cout<<"Right Trigger: "<<ctrl.rightTrigger.getValue()<<"\n";
+					ctrl.vibrate(.05f); // Vibrate for 1 second when right trigger is pressed
                 }
 
             } else if (ctrl.isXboxController()) {
@@ -74,16 +81,16 @@ void main() {
                 if (!ctrl.dpad.isNeutral()) {
                     std::cout<<"Dpad direction: "<<static_cast<int>(ctrl.dpad.getDirection())<<"\n";
                 }
-                if (ctrl.leftJoystick.getAxis(0).length()>0.1f) {
-                    std::cout<<"Left Stick: ("<<ctrl.leftJoystick.getAxis(0).x<<", "<<ctrl.leftJoystick.getAxis(0).y<<")\n";
+                if (ctrl.leftJoystick.getAxis(0).length()>.1f) {
+                    std::cout<<"Left Stick: {"<<ctrl.leftJoystick.getAxis(0).x<<", "<<ctrl.leftJoystick.getAxis(0).y<<"}\n";
                 }
-                if (ctrl.rightJoystick.getAxis(1).length()>0.1f) {
-                    std::cout<<"Right Stick: ("<<ctrl.rightJoystick.getAxis(1).x<<", "<<ctrl.rightJoystick.getAxis(1).y<<")\n";
+                if (ctrl.rightJoystick.getAxis(1).length()>.1f) {
+                    std::cout<<"Right Stick: {"<<ctrl.rightJoystick.getAxis(1).x<<", "<<ctrl.rightJoystick.getAxis(1).y<<"}\n";
                 }
-                if (ctrl.leftTrigger.getValue()>0.1f) {
+                if (ctrl.leftTrigger.getValue()>.01f) {
                     std::cout<<"Left Trigger: "<<ctrl.leftTrigger.getValue()<<"\n";
 				}
-                if (ctrl.rightTrigger.getValue()>0.1f) {
+                if (ctrl.rightTrigger.getValue()>.01f) {
                     std::cout<<"Right Trigger: "<<ctrl.rightTrigger.getValue()<<"\n";
                 }
 

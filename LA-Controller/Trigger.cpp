@@ -3,7 +3,7 @@
 
 #include "../Packages/LA-Controller/Trigger.h"
 #include "../Packages/LA-Controller/Controller.h"
-#include "../Packages/LA-Controller/ControllerType.h" // si besoin de l'enum ControllerType
+#include "../Packages/LA-Controller/ControllerType.h"
 
 namespace la {
 

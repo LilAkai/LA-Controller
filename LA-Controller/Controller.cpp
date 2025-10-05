@@ -167,6 +167,10 @@ void la::Controller::vibrateWithIntensity(float duration, float leftIntensity, f
 
     stopVibration();
 
+    if (vibrationThread.joinable()) {
+        vibrationThread.join();  // attends la fermeture propre du thread existant
+    }
+
     leftIntensity = std::clamp(leftIntensity, 0.0f, 1.0f);
     rightIntensity = std::clamp(rightIntensity, 0.0f, 1.0f);
 
@@ -192,7 +196,7 @@ void la::Controller::vibrationWorker(float duration, float leftIntensity, float 
     sendVibrationData(leftIntensity, rightIntensity);
 
     auto startTime = std::chrono::steady_clock::now();
-    auto durationMs = std::chrono::milliseconds(static_cast<int>(duration*1000));
+    std::chrono::milliseconds durationMs = std::chrono::milliseconds(static_cast<int>(duration*1000));
 
     while (isVibrating) {
         auto currentTime = std::chrono::steady_clock::now();
