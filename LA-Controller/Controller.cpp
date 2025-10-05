@@ -8,7 +8,7 @@ int la::Init() {
     return hid_init();
 }
 
-la::Controller::Controller(): button(*this), connected(false), isVibrating(false), rightJoystick(*this), leftJoystick(*this), dpad(*this){
+la::Controller::Controller(): button(*this), connected(false), isVibrating(false), rightJoystick(*this), leftJoystick(*this), dpad(*this), leftTrigger(*this), rightTrigger(*this){
 	properties.var_hasAudioOutput = false;
 	properties.var_hasMicrophone = false;
 	properties.var_hasGyroscope = false;
@@ -252,9 +252,11 @@ void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity
 // Function to update all inputs (to be called in your game loop)
 void la::Controller::updateInputs() {
     if (isConnected()) {
-        this->button.updateButtonStates(); //TODO : mettre a jour les joysticks et les triggers
+        this->button.updateButtonStates();
 		this->leftJoystick.updateAxisStates();
 		this->rightJoystick.updateAxisStates();
 		this->dpad.update();
+		this->leftTrigger.updateState(0);
+		this->rightTrigger.updateState(1);
     }
 }

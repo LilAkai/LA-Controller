@@ -80,6 +80,12 @@ void main() {
                 if (ctrl.rightJoystick.getAxis(1).length()>0.1f) {
                     std::cout<<"Right Stick: ("<<ctrl.rightJoystick.getAxis(1).x<<", "<<ctrl.rightJoystick.getAxis(1).y<<")\n";
                 }
+                if (ctrl.leftTrigger.getValue()>0.1f) {
+                    std::cout<<"Left Trigger: "<<ctrl.leftTrigger.getValue()<<"\n";
+				}
+                if (ctrl.rightTrigger.getValue()>0.1f) {
+                    std::cout<<"Right Trigger: "<<ctrl.rightTrigger.getValue()<<"\n";
+                }
 
             } else {
                 std::cout<<"Manette non reconnue\n";
