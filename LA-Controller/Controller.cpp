@@ -8,7 +8,7 @@ int la::Init() {
     return hid_init();
 }
 
-la::Controller::Controller(): button(*this), connected(false), isVibrating(false), rightJoystick(*this), leftJoystick(*this), dpad(*this){
+la::Controller::Controller(): button(*this), connected(false), isVibrating(false), rightJoystick(*this), leftJoystick(*this), dpad(*this), touchpad(*this){
 	properties.var_hasAudioOutput = false;
 	properties.var_hasMicrophone = false;
 	properties.var_hasGyroscope = false;
@@ -256,5 +256,6 @@ void la::Controller::updateInputs() {
 		this->leftJoystick.updateAxisStates();
 		this->rightJoystick.updateAxisStates();
 		this->dpad.update(this->leftJoystick.getDpadDirection());
+		this->touchpad.update();
     }
 }

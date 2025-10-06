@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "Nouveau profil",
+    "Projects": [
+      {
+        "Path": "LA-Controller\\LA-Controller.vcxproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

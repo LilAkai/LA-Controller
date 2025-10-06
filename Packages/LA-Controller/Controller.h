@@ -16,6 +16,7 @@
 #include "Joystick.h"
 #include "Trigger.h"
 #include "Dpad.h"
+#include "Touchpad.h"
 
 #define SONY_VENDOR_ID 0x054C
 #define DUALSENSE_PRODUCT_ID 0x0CE6
@@ -112,6 +113,9 @@ namespace la {
 		//triggers
 		Trigger rightTrigger;
 		Trigger leftTrigger;
+
+		//Touchpad
+		Touchpad touchpad;
 
 		//functions - ENLEVÉ inline
 		Event &getEvent();

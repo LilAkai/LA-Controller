@@ -1,10 +1,17 @@
 #include "pch.h"
-#include "../Packages/LA-Controller/Export.h"
+#include <cmath>
+#include <algorithm>
+
 #include "../Packages/LA-Controller/Touchpad.h"
+#include "../Packages/LA-Controller/Controller.h"
 
 namespace la {
 
-    Touchpad::Touchpad(): position(0.0f, 0.0f), touched(false) {}
+    Touchpad::Touchpad(Controller &parent)
+        : parent(parent)
+        , position(0.f, 0.f)
+        , touched(false)
+        , touchDataUpdated(false) {}
 
     Touchpad::~Touchpad() {}
 
@@ -16,36 +23,62 @@ namespace la {
         return touched;
     }
 
-    void Touchpad::updatePosition(float x, float y) {
-        position.x = x;
-        position.y = y;
+    void Touchpad::updatePosition(la::Vector2f vec) {
+        position = vec;
+        touchDataUpdated = true;
     }
 
     void Touchpad::updateTouchState(bool isTouched) {
         touched = isTouched;
+        touchDataUpdated = true;
     }
 
-    void Touchpad::updateFromHID(const unsigned char *inputData, size_t length) {
-        // Vérifier que le buffer a assez de données
-        if (length<36) { // minimum pour extraire infos touchpad usuelles
+    void Touchpad::update() {
+        this->readHIDTouchpadData();
+        this->updateTouchState(this->touched);
+        this->updatePosition(this->position);
+    }
+
+    void Touchpad::readHIDTouchpadData() {
+        if (!&parent||!parent.isConnected()) {
             touched = false;
-            position = la::Vector2f(0.0f, 0.0f);
+            position = la::Vector2f(0.f, 0.f);
+            touchDataUpdated = false;
             return;
         }
 
-        // Exemple typique pour DualSense USB (HID report 0x01):
-        // inputData[32] = flag touches (bit 0 : touchpad touched)
-        // inputData[33..34] = X du contact 1 (little endian uint16_t)
-        // inputData[35..36] = Y du contact 1 (little endian uint16_t)
+        hid_device *device = parent.getIdentification().getDevice();
+        if (!device) return;
+
+        unsigned char inputData[64];
+        int bytesRead = hid_read_timeout(device, inputData, sizeof(inputData), 10);
+
+        if (bytesRead>0&&inputData[0]==0x01) {
+            updateFromHID(inputData, bytesRead);
+        }
+    }
+
+    void Touchpad::updateFromHID(const unsigned char *inputData, size_t length) {
+        if (length<37) {
+            touched = false;
+            position = la::Vector2f(0.f, 0.f);
+            touchDataUpdated = false;
+            return;
+        }
 
         touched = (inputData[32]&0x01)!=0;
 
-        uint16_t x = inputData[33]|(inputData[34]<<8);
-        uint16_t y = inputData[35]|(inputData[36]<<8);
+        uint16_t x = inputData[33]|(static_cast<uint16_t>(inputData[34])<<8);
+        uint16_t y = inputData[35]|(static_cast<uint16_t>(inputData[36])<<8);
 
-        // Normaliser entre 0 et 1 (selon specs : X max ~1920, Y max ~940)
-        position.x = static_cast<float>(x)/1920.0f;
-        position.y = static_cast<float>(y)/940.0f;
+        // Valeurs maximales à ajuster en fonction du touchpad
+        constexpr float x_max = 65535.f; // typique max uint16
+        constexpr float y_max = 65535.f;
+
+        // Normalisation dans [0,1]
+        position.x = static_cast<float>(x)/x_max;
+        position.y = static_cast<float>(y)/y_max;
+
+        touchDataUpdated = true;
     }
-
 }

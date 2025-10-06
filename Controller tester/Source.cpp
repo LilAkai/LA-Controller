@@ -1,71 +1,110 @@
 #include <iostream>
+#include <unordered_map>
 
 #include "LA-Controller/Controller.h"
 
 using dualsense = la::ControllerType::Dualsense;
+using xbox = la::ControllerType::Xbox;
 
 void main() {
-	if (la::Init())
-		return;
+    if (la::Init())
+        return;
 
-	la::Controller ctrl;
-	ctrl.autoDetectAndConnect();
+    la::Controller ctrl;
+    ctrl.autoDetectAndConnect();
 
-	while (1) {
-		if (ctrl.isConnected()) {
-			ctrl.updateInputs();
+    // Map DualSense
+    const std::unordered_map<dualsense, std::string> dualsenseButtons = {
+        {dualsense::Cross, "Cross"},
+        {dualsense::Circle, "Circle"},
+        {dualsense::Square, "Square"},
+        {dualsense::Triangle, "Triangle"},
+        {dualsense::Options, "Options"},
+        {dualsense::PS, "PS"},
+        {dualsense::TouchPad, "TouchPad"},
+        {dualsense::Mute, "Mute"},
+        {dualsense::Share, "Share"},
+        {dualsense::L1, "L1"},
+        {dualsense::R1, "R1"},
+        {dualsense::LStick_DS, "Left Stick"},
+        {dualsense::RStick_DS, "Right Stick"}
+    };
 
-			if (ctrl.isDualSense()) {
-				if (ctrl.button.isPressed(dualsense::Options)) {
-					std::cout<<"Options pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::Cross)) {
-					std::cout<<"cross pressed\n";
-				} 
-				if (ctrl.button.isPressed(dualsense::Circle)) {
-					std::cout<<"Circle pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::Square)) {
-					std::cout<<"Square pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::Triangle)) {
-					std::cout<<"Triangle pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::PS)) {
-					std::cout<<"PS button pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::TouchPad)) {
-					std::cout<<"TouchPad pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::Mute)) {
-					std::cout<<"Mute button pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::Share)) {
-					std::cout<<"Share button pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::L1)) {
-					std::cout<<"L1 pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::R1)) {
-					std::cout<<"R1 pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::LStick_DS)) {
-					std::cout<<"Left Stick pressed\n";
-				}
-				if (ctrl.button.isPressed(dualsense::RStick_DS)) {
-					std::cout<<"Right Stick pressed\n";
+    // Map Xbox
+    const std::unordered_map<xbox, std::string> xboxButtons = {
+        {xbox::A, "A"},
+        {xbox::B, "B"},
+        {xbox::X, "X"},
+        {xbox::Y, "Y"},
+        {xbox::Start, "Start"},
+        {xbox::Home, "Xbox"},
+        {xbox::Select, "Select"},
+        {xbox::LB, "LB"},
+        {xbox::RB, "RB"},
+        {xbox::LStick_Xbox, "Left Stick"},
+        {xbox::RStick_Xbox, "Right Stick"}
+    };
+
+    while (true) {
+        if (ctrl.isConnected()) {
+            ctrl.updateInputs();
+
+            if (ctrl.isDualSense()) {
+                for (const auto &[button, name]:dualsenseButtons) {
+                    if (ctrl.button.isPressed(button)) {
+                        std::cout<<"[DualSense] "<<name<<" pressed\n";
+                    }
+                }
+                if (!ctrl.dpad.isNeutral()) {
+                    std::cout<<"Dpad direction: "<<static_cast<int>(ctrl.dpad.getDirection())<<"\n";
+                }
+                if (ctrl.leftJoystick.getAxis(0).length()>0.1f) {
+                    std::cout<<"Left Stick: {"<<ctrl.leftJoystick.getAxis(0).x<<", "<<ctrl.leftJoystick.getAxis(0).y<<"}\n";
+                }
+                if (ctrl.rightJoystick.getAxis(1).length()>0.1f) {
+                    std::cout<<"Right Stick: {"<<ctrl.rightJoystick.getAxis(1).x<<", "<<ctrl.rightJoystick.getAxis(1).y<<"}\n";
+                }
+                if (ctrl.leftTrigger.getValue()>0.01f) {
+                    std::cout<<"Left Trigger: "<<ctrl.leftTrigger.getValue()<<"\n";
+                }
+                if (ctrl.rightTrigger.getValue()>0.01f) {
+                    std::cout<<"Right Trigger: "<<ctrl.rightTrigger.getValue()<<"\n";
+                    ctrl.vibrate(.05f); // Vibrate for 1 second when right trigger is pressed
+                }
+                if (ctrl.touchpad.isTouched()) {
+                    auto pos = ctrl.touchpad.getPosition();
+                    std::cout<<"Touchpad touched at: {"<<pos.x<<", "<<pos.y<<"}\n";
 				}
 
-				//std::cout<<"Left Stick: ("<<ctrl.leftJoystick.getAxis(0).x<<", "<<ctrl.leftJoystick.getAxis(0).y<<")\n";
-				std::cout<<"Dpad direction: "<<static_cast<int>(ctrl.dpad.getDirection())<<"\n";
-			}
-			else if (ctrl.isXboxController()) {
-			}
-			else {
-			}
-			
-		}
-	}
+            } else if (ctrl.isXboxController()) {
+                for (const auto &[button, name]:xboxButtons) {
+                    if (ctrl.button.isPressed(button)) {
+                        std::cout<<"[Xbox] "<<name<<" pressed\n";
+                    }
+                }
+                if (!ctrl.dpad.isNeutral()) {
+                    std::cout<<"Dpad direction: "<<static_cast<int>(ctrl.dpad.getDirection())<<"\n";
+                }
+                if (ctrl.leftJoystick.getAxis(0).length()>.1f) {
+                    std::cout<<"Left Stick: {"<<ctrl.leftJoystick.getAxis(0).x<<", "<<ctrl.leftJoystick.getAxis(0).y<<"}\n";
+                }
+                if (ctrl.rightJoystick.getAxis(1).length()>.1f) {
+                    std::cout<<"Right Stick: {"<<ctrl.rightJoystick.getAxis(1).x<<", "<<ctrl.rightJoystick.getAxis(1).y<<"}\n";
+                }
+                if (ctrl.leftTrigger.getValue()>.01f) {
+                    std::cout<<"Left Trigger: "<<ctrl.leftTrigger.getValue()<<"\n";
+                }
+                if (ctrl.rightTrigger.getValue()>.01f) {
+                    std::cout<<"Right Trigger: "<<ctrl.rightTrigger.getValue()<<"\n";
+                }
 
-	ctrl.disconnectController();
+            } else {
+                std::cout<<"Manette non reconnue\n";
+            }
+        } else if (!ctrl.isConnected()) {
+            ctrl.autoDetectAndConnect();
+        }
+    }
+
+    ctrl.disconnectController();
 }
