@@ -8,7 +8,7 @@ int la::Init() {
     return hid_init();
 }
 
-la::Controller::Controller(): button(*this), connected(false), isVibrating(false), rightJoystick(*this), leftJoystick(*this), dpad(*this){
+la::Controller::Controller(): button(*this), connected(false), isVibrating(false), rightJoystick(*this), leftJoystick(*this), dpad(*this), leftTrigger(*this), rightTrigger(*this){
 	properties.var_hasAudioOutput = false;
 	properties.var_hasMicrophone = false;
 	properties.var_hasGyroscope = false;
@@ -167,6 +167,10 @@ void la::Controller::vibrateWithIntensity(float duration, float leftIntensity, f
 
     stopVibration();
 
+    if (vibrationThread.joinable()) {
+        vibrationThread.join();  // attends la fermeture propre du thread existant
+    }
+
     leftIntensity = std::clamp(leftIntensity, 0.0f, 1.0f);
     rightIntensity = std::clamp(rightIntensity, 0.0f, 1.0f);
 
@@ -192,7 +196,7 @@ void la::Controller::vibrationWorker(float duration, float leftIntensity, float 
     sendVibrationData(leftIntensity, rightIntensity);
 
     auto startTime = std::chrono::steady_clock::now();
-    auto durationMs = std::chrono::milliseconds(static_cast<int>(duration*1000));
+    std::chrono::milliseconds durationMs = std::chrono::milliseconds(static_cast<int>(duration*1000));
 
     while (isVibrating) {
         auto currentTime = std::chrono::steady_clock::now();
@@ -252,9 +256,11 @@ void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity
 // Function to update all inputs (to be called in your game loop)
 void la::Controller::updateInputs() {
     if (isConnected()) {
-        this->button.updateButtonStates(); //TODO : mettre a jour les joysticks et les triggers
+        this->button.updateButtonStates();
 		this->leftJoystick.updateAxisStates();
 		this->rightJoystick.updateAxisStates();
-		this->dpad.update(this->leftJoystick.getDpadDirection());
+		this->dpad.update();
+		this->leftTrigger.updateState(0);
+		this->rightTrigger.updateState(1);
     }
 }

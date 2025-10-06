@@ -6,12 +6,24 @@ namespace la {
 
     DPAD::DPAD(Controller &controller): parent(controller), dpadRawDirection(8) {}
 
-    void DPAD::update(unsigned char rawValue) {
-        dpadRawDirection = rawValue&0x0F;
-        if (dpadRawDirection>7) {
-            dpadRawDirection = 8; // Neutre
+    void DPAD::update() {
+        if (!&parent||!parent.isConnected())
+            return;
+
+        hid_device *device = parent.getIdentification().getDevice();
+        if (!device)
+            return;
+
+        unsigned char inputData[64];
+        int bytesRead = hid_read_timeout(device, inputData, sizeof(inputData), 10);
+
+        if (bytesRead>8&&inputData[0]==0x01) { // 8 pour garantir l'octet dpad
+            dpadRawDirection = inputData[8]&0x0F;
+            if (dpadRawDirection>7)
+                dpadRawDirection = 8;
         }
     }
+
 
     DpadDirection DPAD::getDirection() const {
         return static_cast<DpadDirection>(dpadRawDirection);
