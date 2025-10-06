@@ -20,6 +20,22 @@ la::Vector2f la::Vector2f::normalized() const {
     return Vector2f(0.0f, 0.0f); // vecteur nul
 }
 
+la::Vector2f la::Vector2f::operator+(const Vector2f &other) const {
+    return la::Vector2f(this->x+other.x,this->y+other.y);
+}
+
+la::Vector2f la::Vector2f::operator-(const Vector2f &other) const {
+    return la::Vector2f(other.x-this->x,other.y-this->y);
+}
+
+la::Vector2f la::Vector2f::operator*(float scalar) const {
+    return la::Vector2f(this->x*scalar,this->y*scalar);
+}
+
+la::Vector2f la::Vector2f::operator/(float scalar) const {
+    return la::Vector2f(this->x/scalar,this->y/scalar);
+}
+
 float la::Vector2f::length() const {
     return std::sqrt(x*x+y*y);
 }

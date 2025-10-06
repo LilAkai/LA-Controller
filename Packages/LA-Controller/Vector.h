@@ -21,6 +21,11 @@ namespace la {
         ////////////////////////////////////////////////////////////
         Vector2f normalized() const;
 
+		Vector2f operator+(const Vector2f &other) const;
+		Vector2f operator-(const Vector2f &other) const;
+		Vector2f operator*(float scalar) const;
+		Vector2f operator/(float scalar) const;
+
         float length() const;
 
         float x {}; //!< X coordinate of the vector
