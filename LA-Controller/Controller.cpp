@@ -76,7 +76,7 @@ bool la::Controller::connectController(unsigned int vendorId, unsigned int produ
         connected = true;
         std::cout<<"Contrôleur connecté: "<<getControllerName()
             <<" (VID: 0x"<<std::hex<<getVendorID()
-            <<", PID: 0x"<<getProductID()<<")"<<std::endl;
+            <<", PID: 0x"<<getProductID()<<")\n";
 
         // Configurer les propriétés selon le type de contrôleur
         if (isDualSense()) {
@@ -107,7 +107,7 @@ void la::Controller::disconnectController() {
     if (connected) {
         identification.disconnect();
         connected = false;
-        std::cout<<"Contrôleur déconnecté"<<std::endl;
+        std::cout<<"Contrôleur déconnecté\n";
     }
 }
 
@@ -156,12 +156,12 @@ void la::Controller::vibrate(float duration) {
 
 void la::Controller::vibrateWithIntensity(float duration, float leftIntensity, float rightIntensity) {
     if (!isConnected()) {
-        std::cerr<<"Aucun contrôleur connecté pour la vibration"<<std::endl;
+        std::cerr<<"Aucun contrôleur connecté pour la vibration\n";
         return;
     }
 
     if (duration<=0.0f) {
-        std::cerr<<"Durée de vibration invalide: "<<duration<<std::endl;
+        std::cerr<<"Durée de vibration invalide: "<<duration<<"\n";
         return;
     }
 
@@ -228,7 +228,7 @@ void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity
 
         int result = hid_write(device, vibrationData, sizeof(vibrationData));
         if (result<0) {
-            std::cerr<<"Erreur lors de l'envoi de la vibration DualSense"<<std::endl;
+            std::cerr<<"Erreur lors de l'envoi de la vibration DualSense\n";
         }
 
     } else if (isXboxController()) {
@@ -244,7 +244,7 @@ void la::Controller::sendVibrationData(float leftIntensity, float rightIntensity
 
         int result = hid_write(device, vibrationData, sizeof(vibrationData));
         if (result<0) {
-            std::cerr<<"Erreur lors de l'envoi de la vibration Xbox"<<std::endl;
+            std::cerr<<"Erreur lors de l'envoi de la vibration Xbox\n";
         }
     }
 }

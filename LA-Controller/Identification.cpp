@@ -13,7 +13,7 @@ la::Identification::~Identification() {
 
 bool la::Identification::initialize() {
     if (hid_init()!=0) {
-        std::cerr<<"Erreur lors de l'initialisation de HID API"<<std::endl;
+        std::cerr<<"Erreur lors de l'initialisation de HID API\n";
         return false;
     }
     initialized = true;
@@ -27,7 +27,7 @@ bool la::Identification::connectToController(unsigned int vendorId, unsigned int
 
     // Si pas de paramètres spécifiés, chercher automatiquement
     if (vendorId==0&&productId==0) {
-        auto controllers = listControllers();
+        std::vector<hid_device_info *> controllers = listControllers();
         if (!controllers.empty()) {
             // Prendre le premier contrôleur trouvé
             vendorId = controllers[0]->vendor_id;
@@ -53,7 +53,7 @@ bool la::Identification::connectToController(unsigned int vendorId, unsigned int
     device = hid_open(vendorId, productId, nullptr);
     if (!device) {
         std::cerr<<"Impossible d'ouvrir le contrôleur (VID: 0x"
-            <<std::hex<<vendorId<<", PID: 0x"<<productId<<")"<<std::endl;
+            <<std::hex<<vendorId<<", PID: 0x"<<productId<<")\n";
         return false;
     }
 
@@ -78,7 +78,7 @@ bool la::Identification::connectToController(unsigned int vendorId, unsigned int
         }
     }
 
-    std::cout<<"Contrôleur connecté: "<<name<<std::endl;
+    std::cout<<"Contrôleur connecté: "<<name<<"\n";
     return true;
 }
 
@@ -127,9 +127,13 @@ std::vector<hid_device_info *> la::Identification::listControllers() {
     const ControllerID knownControllers[] = {
         {0x054c, 0x0ce6, "DualSense"},           // PS5 DualSense
         {0x054c, 0x0df2, "DualSense Edge"},      // PS5 DualSense Edge
-                                                 
         {0x054c, 0x09cc, "DualShock 4"},         // PS4 DualShock 4
-        {0x045e, 0x02ea, "Xbox One"},            // Xbox One Controller
+                                                  
+        {0x045e, 0x028e, "Xbox 360"},            // Xbox One Controller
+        {0x045e, 0x02ea, "Xbox One S"},          // Xbox One Controller
+        {0x045e, 0x02fd, "Xbox One S"},          // Xbox One Controller
+        {0x045e, 0x02dd, "Xbox One"},            // Xbox One Controller
+        {0x045e, 0x02e3, "Xbox One Elite "},     // Xbox One Controller
         {0x045e, 0x0b12, "Xbox Series"},         // Xbox Series X|S Controller
         {0x045e, 0x0b00, "Xbox Elite Series 2"}, // Xbox Elite Series Controller
     };
