@@ -133,6 +133,7 @@ std::vector<hid_device_info *> la::Identification::listControllers() {
         {0x045e, 0x02ea, "Xbox One S"},          // Xbox One Controller
         {0x045e, 0x02fd, "Xbox One S"},          // Xbox One Controller
         {0x045e, 0x02dd, "Xbox One"},            // Xbox One Controller
+        {0x045e, 0x02ff, "Xbox One"},            // Xbox One Controller
         {0x045e, 0x02e3, "Xbox One Elite "},     // Xbox One Controller
         {0x045e, 0x0b12, "Xbox Series"},         // Xbox Series X|S Controller
         {0x045e, 0x0b00, "Xbox Elite Series 2"}, // Xbox Elite Series Controller
@@ -144,8 +145,7 @@ std::vector<hid_device_info *> la::Identification::listControllers() {
     while (current) {
         // Vérifier si c'est un contrôleur connu
         for (const auto &controller:knownControllers) {
-            if (current->vendor_id==controller.vendor_id&&
-                current->product_id==controller.product_id) {
+            if (current->vendor_id==controller.vendor_id&&current->product_id==controller.product_id) {
                 controllers.push_back(current);
                 break;
             }
@@ -165,11 +165,12 @@ void la::Identification::freeControllersList(std::vector<hid_device_info *> &lis
 }
 
 bool la::Identification::isDualSense() const {
-    return vendorID==0x054C && productID==0x0CE6;
+    return vendorID==0x054c && productID==0x0ce6;
 }
 
 bool la::Identification::isXboxController() const {
-    return vendorID==0x045E && (productID==0x02EA||productID==0x0B12);
+    return vendorID==0x045e && (productID==0x028e||productID==0x02ea||productID==0x02fd||productID==0x02fd||
+                                productID==0x02dd||productID==0x02ff||productID==0x02e3||productID==0x0b12||productID==0x0b00);
 }
 
 hid_device *la::Identification::getDevice() const {
